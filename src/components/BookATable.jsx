@@ -3,8 +3,8 @@
 // campo input (o ancora di più con un <form>) avete bisogno di UNO STATE
 // -> il componente deve venire creato come CLASS COMPONENT
 
-import { useState } from 'react'
-import { Col, Container, Row, Form, Button } from 'react-bootstrap'
+import { useState } from "react";
+import { Col, Container, Row, Form, Button } from "react-bootstrap";
 
 // ogni volta che dovete fare un form lo dovete modellare intorno al DATO
 // che dovete inviare alle API
@@ -40,27 +40,27 @@ const BookATable = function () {
   // }
 
   const [booking, setBooking] = useState({
-    name: '',
-    phone: '',
-    numberOfPeople: '1',
+    name: "",
+    phone: "",
+    numberOfPeople: "1",
     smoking: false,
-    dateTime: '',
-    specialRequests: '',
-  })
+    dateTime: "",
+    specialRequests: "",
+  });
 
   const sendBooking = () => {
-    console.log('invio i dati alle API', booking)
-    const URL = 'https://striveschool-api.herokuapp.com/api/reservation'
+    console.log("invio i dati alle API", booking);
+    const URL = "https://striveschool-api.herokuapp.com/api/reservation";
     fetch(URL, {
-      method: 'POST',
+      method: "POST",
       body: JSON.stringify(booking),
       headers: {
-        'Content-Type': 'application/json', // metodi POST e PUT
+        "Content-Type": "application/json", // metodi POST e PUT
       },
     })
       .then((r) => {
         if (r.ok) {
-          alert('Prenotazione salvata correttamente!')
+          alert("Prenotazione salvata correttamente!");
           // svuoto il form: RESETTO LO STATO
           // this.setState({
           //   booking: {
@@ -73,21 +73,21 @@ const BookATable = function () {
           //   },
           // })
           setBooking({
-            name: '',
-            phone: '',
-            numberOfPeople: '1',
+            name: "",
+            phone: "",
+            numberOfPeople: "1",
             smoking: false,
-            dateTime: '',
-            specialRequests: '',
-          })
+            dateTime: "",
+            specialRequests: "",
+          });
         } else {
-          throw new Error('errore nella response', r.status)
+          throw new Error("errore nella response", r.status);
         }
       })
       .catch((e) => {
-        alert('ERRORE IN INVIO DELLA PRENOTAZIONE', e)
-      })
-  }
+        alert("ERRORE IN INVIO DELLA PRENOTAZIONE", e);
+      });
+  };
 
   // ora colleghiamo i campi del FORM alle diverse proprietà
   // dello STATO del componente. In react questa operazione si chiama:
@@ -108,8 +108,8 @@ const BookATable = function () {
           {/* form */}
           <Form
             onSubmit={(e) => {
-              e.preventDefault()
-              sendBooking() // sotto THIS perchè siamo in una classe
+              e.preventDefault();
+              sendBooking(); // sotto THIS perchè siamo in una classe
             }}
           >
             <Form.Group className="mb-3">
@@ -132,7 +132,7 @@ const BookATable = function () {
                   setBooking({
                     ...booking,
                     name: e.target.value,
-                  })
+                  });
                 }}
                 required
               />
@@ -155,7 +155,7 @@ const BookATable = function () {
                   setBooking({
                     ...booking,
                     phone: e.target.value,
-                  })
+                  });
                 }}
               />
             </Form.Group>
@@ -177,7 +177,7 @@ const BookATable = function () {
                   setBooking({
                     ...booking,
                     numberOfPeople: e.target.value,
-                  })
+                  });
                 }}
               >
                 <option>1</option>
@@ -204,7 +204,7 @@ const BookATable = function () {
                   setBooking({
                     ...booking,
                     smoking: e.target.checked,
-                  })
+                  });
                 }}
               />
             </Form.Group>
@@ -225,7 +225,7 @@ const BookATable = function () {
                   setBooking({
                     ...booking,
                     dateTime: e.target.value,
-                  })
+                  });
                 }}
               />
             </Form.Group>
@@ -246,7 +246,7 @@ const BookATable = function () {
                   setBooking({
                     ...booking,
                     specialRequests: e.target.value,
-                  })
+                  });
                 }}
               />
             </Form.Group>
@@ -258,10 +258,10 @@ const BookATable = function () {
         </Col>
       </Row>
     </Container>
-  )
-}
+  );
+};
 
-export default BookATable
+export default BookATable;
 
 // const lucio1 = {
 //   name: 'Lucio',
